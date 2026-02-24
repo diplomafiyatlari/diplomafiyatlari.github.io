@@ -250,14 +250,14 @@
 <div class="fg"><label class="fl-label">📅 Doğum Tarihi *</label><input type="date" id="dogT" class="fi-input" required></div>
 </div>
 <div id="liseF" style="display:none">
-<div class="fg"><label class="fl-label">🎓 Okul *</label><input type="text" id="liseMO" class="fi-input" required></div>
+<div class="fg"><label class="fl-label">🎓 Okul *</label><input type="text" id="liseMO" class="fi-input"></div>
 <div class="fg"><label class="fl-label">👨‍🏫 Okul Müdürü <span style="opacity:.5">(opsiyonel)</span></label><input type="text" id="oMud" class="fi-input"></div>
 <div class="fg"><label class="fl-label">👨‍💼 Müdür Yrd. <span style="opacity:.5">(opsiyonel)</span></label><input type="text" id="mYrd" class="fi-input"></div>
 </div>
 <div id="uniF" style="display:none">
-<div class="fg"><label class="fl-label">🎓 Okul *</label><input type="text" id="uniMO" class="fi-input" required></div>
-<div class="fg"><label class="fl-label">🏛️ Fakülte *</label><input type="text" id="fakA" class="fi-input" required></div>
-<div class="fg"><label class="fl-label">📚 Bölüm *</label><input type="text" id="bolA" class="fi-input" required></div>
+<div class="fg"><label class="fl-label">🎓 Okul *</label><input type="text" id="uniMO" class="fi-input"></div>
+<div class="fg"><label class="fl-label">🏛️ Fakülte *</label><input type="text" id="fakA" class="fi-input"></div>
+<div class="fg"><label class="fl-label">📚 Bölüm *</label><input type="text" id="bolA" class="fi-input"></div>
 <div class="fg"><label class="fl-label">👨‍🏫 Dekan <span style="opacity:.5">(opsiyonel)</span></label><input type="text" id="dekA" class="fi-input"></div>
 <div class="fg"><label class="fl-label">🏢 Rektör <span style="opacity:.5">(opsiyonel)</span></label><input type="text" id="rekA" class="fi-input"></div>
 </div>
@@ -349,7 +349,7 @@
 function openLB(s){var l=document.getElementById('lightbox');document.getElementById('lbImg').src=s;l.style.display='flex'}
 function closeLB(){document.getElementById('lightbox').style.display='none'}
 function selProg(p){var s=document.getElementById('progSel');for(var i=0;i<s.options.length;i++){if(s.options[i].value===p){s.selectedIndex=i;break}}togF()}
-function togF(){var p=document.getElementById('progSel').value,c=document.getElementById('cmnF'),l=document.getElementById('liseF'),u=document.getElementById('uniF'),n=document.getElementById('notF'),s=document.getElementById('subF');if(!p){c.style.display=l.style.display=u.style.display=n.style.display=s.style.display='none'}else if(p==='Lise'){c.style.display=l.style.display=n.style.display=s.style.display='block';u.style.display='none'}else{c.style.display=u.style.display=n.style.display=s.style.display='block';l.style.display='none'}}
+function togF(){var p=document.getElementById('progSel').value,c=document.getElementById('cmnF'),l=document.getElementById('liseF'),u=document.getElementById('uniF'),n=document.getElementById('notF'),s=document.getElementById('subF');if(!p){c.style.display=l.style.display=u.style.display=n.style.display=s.style.display='none';document.getElementById('liseMO').required=false;document.getElementById('uniMO').required=false;document.getElementById('fakA').required=false;document.getElementById('bolA').required=false}else if(p==='Lise'){c.style.display=l.style.display=n.style.display=s.style.display='block';u.style.display='none';document.getElementById('liseMO').required=true;document.getElementById('uniMO').required=false;document.getElementById('fakA').required=false;document.getElementById('bolA').required=false}else{c.style.display=u.style.display=n.style.display=s.style.display='block';l.style.display='none';document.getElementById('liseMO').required=false;document.getElementById('uniMO').required=true;document.getElementById('fakA').required=true;document.getElementById('bolA').required=true}}
 function valTC(tc){if(!/^[0-9]{11}$/.test(tc)||tc[0]==='0')return!1;var d=tc.split('').map(Number),s1=d[0]+d[2]+d[4]+d[6]+d[8],s2=d[1]+d[3]+d[5]+d[7],t10=((s1*7)-s2)%10;if(t10<0)t10+=10;if(d[9]!==t10)return!1;var t11=(s1+s2+t10)%10;return d[10]===t11}
 var tcI=document.getElementById('tcK'),tcE=document.getElementById('tcErr');
 if(tcI){tcI.addEventListener('input',function(){this.value=this.value.replace(/[^0-9]/g,'');var v=this.value;if(!v){tcE.style.display='none';this.classList.remove('fi-invalid');return}var ok=valTC(v);tcE.style.display=ok?'none':'block';this.classList[ok?'remove':'add']('fi-invalid')})}
